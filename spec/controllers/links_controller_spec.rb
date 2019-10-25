@@ -10,6 +10,13 @@ RSpec.describe LinksController, type: :controller do
 
   describe "links#new action" do
     it "should successfully show a new form" do
+      user = User.create(
+        email:                 'fakeuser@gmail.com',
+        password:              'secretPassword',
+        password_confirmation: 'secretPassword'
+      )
+      sign_in user
+
       get :new
       expect(response).to have_http_status(:success)
     end
@@ -17,17 +24,33 @@ RSpec.describe LinksController, type: :controller do
 
   describe "links#create action" do
     it "should successfully create a new gram in our database" do
+      user = User.create(
+        email:                 'fakeuser@gmail.com',
+        password:              'secretPassword',
+        password_confirmation: 'secretPassword'
+      )
+      sign_in user
       post :create, params: { link: { title: 'Google', link: 'www.google.com', discription: 'Search the web!' } }
       expect(response).to redirect_to root_path
 
       link = Link.last
       expect(link.title).to eq("Google")
+      expect(link.user).to eq(user)
     end
 
     it "should properly deal with validation errors" do
+      user = User.create(
+        email:                 'fakeuser@gmail.com',
+        password:              'secretPassword',
+        password_confirmation: 'secretPassword'
+      )
+      sign_in user
+
+      link_count = Link.count
+
       post :create, params: { link: { title: '', link: '', discription: '' } }
       expect(response).to have_http_status(:unprocessable_entity)
-      expect(Link.count).to eq 0
+      expect(link_count).to eq Link.count
     end
   end
 end

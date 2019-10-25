@@ -7,7 +7,7 @@ class LinksController < ApplicationController
   end
 
   def create
-    @link = Link.create(link_params)
+    @link = current_user.links.create(link_params)
     if @link.valid?
       redirect_to root_path
     else
