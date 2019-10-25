@@ -8,7 +8,11 @@ class LinksController < ApplicationController
 
   def create
     @link = Link.create(link_params)
-    redirect_to root_path
+    if @link.valid?
+      redirect_to root_path
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
   private

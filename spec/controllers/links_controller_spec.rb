@@ -23,5 +23,11 @@ RSpec.describe LinksController, type: :controller do
       link = Link.last
       expect(link.title).to eq("Google")
     end
+
+    it "should properly deal with validation errors" do
+      post :create, params: { link: { title: '', link: '', discription: '' } }
+      expect(response).to have_http_status(:unprocessable_entity)
+      expect(Link.count).to eq 0
+    end
   end
 end
