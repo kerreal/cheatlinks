@@ -14,4 +14,14 @@ RSpec.describe LinksController, type: :controller do
       expect(response).to have_http_status(:success)
     end
   end
+
+  describe "links#create action" do
+    it "should successfully create a new gram in our database" do
+      post :create, params: { link: { title: 'Google', link: 'www.google.com', discription: 'Search the web!' } }
+      expect(response).to redirect_to root_path
+
+      link = Link.last
+      expect(link.title).to eq("Google")
+    end
+  end
 end
