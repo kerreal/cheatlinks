@@ -14,19 +14,21 @@
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <%= link_to 'Nomster', root_path, class: 'navbar-brand' %>
+      <%= link_to 'Cheat Links', root_path, class: 'navbar-brand' %>
 
       <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
         <ul class="navbar-nav mr-auto mt-2 mt-md-0">
           <li class="nav-item">
-            <%= link_to new_place_path, class: 'nav-link' do %>
-              <i class="fa fa-plus-circle"></i>
-              New Place
+            <%= link_to new_link_path, class: 'nav-link' do %>
+              <button type="button" class="btn btn-info">New Link</button>
             <% end %>
           </li>
         </ul>
         <ul class="navbar-nav">
           <% if user_signed_in? %>
+            <li class="nav-item">
+              <%= link_to current_user.email, '#', class: 'nav-link' %>
+            </li>
             <li class="nav-item">
               <%= link_to 'Sign out', destroy_user_session_path, method: :delete, class: 'nav-link' %>
             </li>
@@ -47,6 +49,47 @@
     <% if alert.present? %>
       <p class="alert alert-danger"><%= alert %></p>
     <% end %>
-    <%= yield %>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-sm-2">
+        </div>
+        <div class="col-12 col-sm-8 mainContent">
+          <%= yield %>
+        </div>
+        <div class="col-12 col-sm-2">
+        </div>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="container-fluid text-center">
+      <div class="container">
+        <div class="row">
+          <div class="col-12 col-sm-3">
+          </div>
+          <div class="col-12 col-sm-3">
+          </div>
+          <div class="col-12 col-sm-3">
+            <b>Contact</b>
+            <br />
+            Christian Thomas
+            <br />
+            Oshkosh WI, 54902
+          </div>
+          <div class="col-12 col-sm-3 social">
+            <b>Social</b>
+            <br />
+            <%= link_to 'https://github.com/kerreal' do %>
+              <span class="fa fa-github-square fa-2x social-button"></span>
+            <% end %>
+            <br />
+            <%= link_to 'https://www.linkedin.com/in/christian-thomas-fullstack/' do %>
+              <span class="fa fa-linkedin-square fa-2x social-button"></span>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>

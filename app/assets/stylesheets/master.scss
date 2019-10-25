@@ -1,1 +1,39 @@
 @import "bootstrap";
+
+body {
+  color: white;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: image_url('bodyBackground.jpg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+}
+
+.mainContent {
+  padding-top: 20px;
+}
+
+footer {
+  font-size: small;
+  position: relative;
+  width: 100%;
+  min-height: 100px;
+  padding: 10px 0px;
+  margin-top: 30px;
+  background-color: rgba(36, 32, 33, 0.9);
+
+}
+
+.linkLine{
+  padding-top: 15px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 15px;
+  margin-top: 45px;
+  margin-bottom: 10px;
+  border-bottom: 6px double grey;
+  border-radius: 25%;
+  background-color: rgba(36, 32, 33, 0.9);
+}

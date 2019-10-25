@@ -1,1 +1,26 @@
-<h1> MAIN PAGE</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h1>Fun Links!</h1>
+    </div>
+  </div>
+</div>
+
+
+<% @links.each do |link| %>
+  <div class="linkLine">
+    <div class="row">
+      <div class="col-4">
+        <%= link.user.email %>
+      </div>
+      <div class="col-8">
+        <h2><%= link.title %></h2>
+      </div>
+    </div>
+    <div class="row link_last">
+      <div class="col-12">
+        <p><%= link_to link.link, link.link %> - <%= link.discription %></p>
+      </div>
+    </div>
+  </div>
+<% end %>
